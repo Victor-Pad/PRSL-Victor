@@ -61,95 +61,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Suppress("DEPRECATION")
-@Deprecated(
-    message = "Use overload which takes inputField as a parameter",
-    replaceWith =
-    ReplaceWith(
-        "SearchBar(\n" +
-                "    inputField = {\n" +
-                "        SearchBarDefaults.InputField(\n" +
-                "            query = query,\n" +
-                "            onQueryChange = onQueryChange,\n" +
-                "            onSearch = onSearch,\n" +
-                "            expanded = active,\n" +
-                "            onExpandedChange = onActiveChange,\n" +
-                "            enabled = enabled,\n" +
-                "            placeholder = placeholder,\n" +
-                "            leadingIcon = leadingIcon,\n" +
-                "            trailingIcon = trailingIcon,\n" +
-                "            colors = colors.inputFieldColors,\n" +
-                "            interactionSource = interactionSource,\n" +
-                "        )\n" +
-                "    },\n" +
-                "    expanded = active,\n" +
-                "    onExpandedChange = onActiveChange,\n" +
-                "    modifier = modifier,\n" +
-                "    shape = shape,\n" +
-                "    colors = colors,\n" +
-                "    tonalElevation = tonalElevation,\n" +
-                "    shadowElevation = shadowElevation,\n" +
-                "    windowInsets = windowInsets,\n" +
-                "    content = content,\n" +
-                ")"
-    ),
-)
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SearchBar(
-    query: String,
-    onQueryChange: (String) -> Unit,
-    onSearch: (String) -> Unit,
-    active: Boolean,
-    onActiveChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    placeholder: @Composable (() -> Unit)? = null,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    shape: Shape = SearchBarDefaults.inputFieldShape,
-    colors: SearchBarColors = SearchBarDefaults.colors(),
-    tonalElevation: Dp = SearchBarDefaults.TonalElevation,
-    shadowElevation: Dp = SearchBarDefaults.ShadowElevation,
-    windowInsets: WindowInsets = SearchBarDefaults.windowInsets,
-    interactionSource: MutableInteractionSource? = null,
-    content: @Composable ColumnScope.() -> Unit,
-) {
-    SearchBar(
-        query = query,
-        onQueryChange = onQueryChange,
-        onSearch = onSearch,
-        active = active,
-        onActiveChange = onActiveChange,
-        modifier = modifier,
-        enabled = enabled,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIcon = trailingIcon,
-        shape = shape,
-        colors = colors,
-        tonalElevation = tonalElevation,
-        shadowElevation = shadowElevation,
-        windowInsets = windowInsets,
-        interactionSource = interactionSource,
-    ) {
-        SearchBarDefaults.InputField(
-            query = query,
-            onQueryChange = onQueryChange,
-            onSearch = onSearch,
-            expanded = active,
-            onExpandedChange = onActiveChange,
-            enabled = enabled,
-            placeholder = placeholder,
-            leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            colors = colors.inputFieldColors,
-            interactionSource = interactionSource,
-        )
-        content()
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GifSearchScreen(context: Context) {
@@ -205,7 +116,7 @@ fun GifSearchScreen(context: Context) {
                 },
                 active = active,
                 onActiveChange = { active = it },
-                placeholder = { Text("Search your GIFs") },
+                placeholder = { Text("Busca tu GIF") },
                 leadingIcon = {
                     if (active) {
                         IconButton(onClick = { active = false }) {
@@ -271,13 +182,6 @@ fun GifSearchScreen(context: Context) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
-                )
-            } ?: run {
-                // If no GIF found, display a placeholder message
-                Text(
-                    text = "No GIF found for \"$query\"",
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(16.dp)
                 )
             }
         }
